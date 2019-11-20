@@ -1,3 +1,4 @@
+from django.core import validators
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models import signals
@@ -5,6 +6,7 @@ from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from base.utils import generate_public_id
+from base.validators import phone_number_validator
 
 
 # Create your models here.
@@ -15,7 +17,8 @@ class User(AbstractUser):
     """
     public_id = models.CharField(max_length=settings.PUBLIC_ID_LENGTH, editable=False, unique=True)
     email = models.EmailField(_('email address'), unique=True)
-    phone_number = models.BooleanField(verbose_name="Phone Number", null=True, blank=True)
+    phone_number = models.CharField(max_length=11, verbose_name="Phone Number", null=True, blank=True,
+                                       validators=[phone_number_validator])
     email_confirmed = models.BooleanField(default=True)
 
     def save(self, *args, **kwargs):
