@@ -107,3 +107,6 @@ venv.bak/
 #IDEs
 .vscode/
 .idea/
+
+# Private settings
+*/private_settings.py

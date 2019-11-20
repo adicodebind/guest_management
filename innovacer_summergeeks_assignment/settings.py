@@ -15,17 +15,24 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+try:
+    from . import private_settings as external_settings
+    print("Using Private settings")
+
+except ImportError:
+    from . import public_settings as external_settings
+    print("Using Public Settings")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'rjm466f)oa8v5gbb%yd6gu(sdt#p5rac3r(wz)!1+csk*mvxmn'
+SECRET_KEY = external_settings.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = external_settings.DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = external_settings.ALLOWED_HOSTS
 
 
 # Application definition
@@ -37,6 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'base',
+    'registration',
+    'entry_logs'
 ]
 
 MIDDLEWARE = [
@@ -73,14 +83,10 @@ WSGI_APPLICATION = 'innovacer_summergeeks_assignment.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+DATABASES = external_settings.DATABASES
 
 
+AUTH_USER_MODEL = 'registration.User'
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
@@ -99,7 +105,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SENDGRID_SANDBOX_MODE_IN_DEBUG = external_settings.SENDGRID_SANDBOX_MODE_IN_DEBUG
+SENDGRID_API_KEY = external_settings.SENDGRID_API_KEY
 
+EMAIL_BACKEND = external_settings.EMAIL_BACKEND
+EMAIL_HOST = external_settings.EMAIL_HOST
+EMAIL_PORT = external_settings.EMAIL_PORT
+EMAIL_USE_TLS = external_settings.EMAIL_USE_TLS
+EMAIL_HOST_USER = external_settings.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+PUBLIC_ID_LENGTH = external_settings.PUBLIC_ID_LENGTH
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
