@@ -27,3 +27,10 @@ script:
 after_success:
   - coveralls
 
+notifications:
+  email:
+    recipients:
+      - coderdude1999@gmail.com
+    on_success: change
+    on_failure: always
+
