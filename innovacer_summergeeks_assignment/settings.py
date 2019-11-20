@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
     'base',
     'registration',
     'entry_logs'
@@ -104,6 +105,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+LOGIN_REDIRECT_URL = '/entry_logs/logs'
+LOGIN_URL = "/registration/login"
 
 SENDGRID_SANDBOX_MODE_IN_DEBUG = external_settings.SENDGRID_SANDBOX_MODE_IN_DEBUG
 SENDGRID_API_KEY = external_settings.SENDGRID_API_KEY
