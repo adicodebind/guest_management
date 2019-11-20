@@ -28,6 +28,18 @@ class User(AbstractUser):
         super().save(*args, **kwargs)
 
 
+class Host(models.Model):
+    user = models.OneToOneField(to=User, on_delete=models.CASCADE)
+    public_id = models.CharField(max_length=settings.PUBLIC_ID_LENGTH, editable=False, unique=True)
+
+    def save(self, *args, **kwargs):
+        if not self.public_id:
+            self.public_id = generate_public_id(self, length=settings.PUBLIC_ID_LENGTH)
+
+        super().save(*args, **kwargs)
+
+
+
 @receiver(signals.post_save, sender=User)
 def set_email_confirmed_true_for_superuser(sender, instance, created, **kwargs):
     """
