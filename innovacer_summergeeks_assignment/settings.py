@@ -106,8 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_REDIRECT_URL = '/entry_logs/logs'
-LOGIN_URL = "/registration/login"
+LOGIN_REDIRECT_URL = 'entry_logs:logs'
+LOGIN_URL = "registration:login"
 
 SENDGRID_SANDBOX_MODE_IN_DEBUG = external_settings.SENDGRID_SANDBOX_MODE_IN_DEBUG
 SENDGRID_API_KEY = external_settings.SENDGRID_API_KEY
@@ -124,7 +124,7 @@ PUBLIC_ID_LENGTH = external_settings.PUBLIC_ID_LENGTH
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
