@@ -1,0 +1,40 @@
+{%  load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="{% url 'registration:login' %}" method="POST" class="form login">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="form__field">
+        <label for="{{ form.username.id_for_label }}">Email</label>
+        {{ form.username|add_class:"form__input"|attr:"placeholder:Email" }}
+    </div>
+
+    <div class="form__field">
+        <label for="login__password">
+            Password
+        </label>
+        {{ form.password|add_class:"form__input"|attr:"placeholder:Password" }}
+    </div>
+
+
+    <div class="form__field">
+        <input type="submit" value="Sign In">
+    </div>
+
+</form>
+
+{% comment %}<p class="text--center">
+{#        Not a member yet?<a href="{% url 'registration:signup' %}">Sign up now</a><br>#}
+        Forgot Password?<a href="{% url 'password_reset' %}">Click Here</a>
+        <svg class="icon">
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/images/icons.svg#arrow-right"></use>
+        </svg>
+    </p>{% endcomment %}
+</body>
+</html>
