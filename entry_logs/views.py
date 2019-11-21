@@ -6,6 +6,7 @@ from django.utils import timezone
 from registration.models import User, Visitor
 from .forms import VisitorLogForm, CheckoutForm
 from .models import VisitorLog
+from .utils import send_checkin_email_to_hosts, send_checkout_email_to_visitor
 
 
 # Create your views here.
@@ -38,7 +39,8 @@ def checkin(request):
             else:
                 visitor_log = VisitorLog.objects.create(visitor_user=user.visitor, checkin_time=timezone.now(), address=data['address'], host=data['host'])
 
-                print(visitor_log.__dict__)
+                # print(visitor_log.__dict__)
+                send_checkin_email_to_hosts(visitor_log)
                 return render(request, "entry_logs/checkin_complete.html", context={"log": visitor_log})
 
     else:
@@ -62,6 +64,7 @@ def checkout(request):
             else:
                 log.checkout_time = timezone.now()
                 log.save()
+                send_checkout_email_to_visitor(log)
                 return render(request, "entry_logs/checkout_complete.html", context={})
 
     else:
