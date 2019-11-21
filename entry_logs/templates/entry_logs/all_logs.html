@@ -1,34 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<table>
-<tr>
-    <th>Email</th>
-    <th>Phone Number</th>
-    <th>In time</th>
-    <th>Out time</th>
-    <th>Address</th>
-</tr>
-{% for log in logs %}
-    <tr>
-    <td>{{ log.visitor_user.user.email }}</td>
-    <td>{{ log.visitor_user.user.phone_number }}</td>
-    <td>{{ log.checkin_time }}</td>
-    <td>
-        {% if log.checkout_time %}
-            {{ log.checkout_time }}
-        {% else %}
-            Still Inside
-        {% endif %}
-    </td>
-    <td>{{ log.address }}</td>
-    </tr>
-{% endfor %}
-</table>
-<a href="/">Back to home</a>
-</body>
-</html>
+{% extends 'base/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block main_content %}
+    <div class="center cyan-text text-darken-4" style="font-weight: bold">
+        <h3>Visitor Logs</h3>
+    <p>
+        All visitors of {{ request.user.email }}
+    </p>
+    </div>
+    <div class="row">
+        <table class="responsive-table striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Check-In Time</th>
+                <th>Check-out Time</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for log in logs %}
+                <tr>
+                    <td> {% if log.visitor_user.user.get_full_name %}
+                        {{ log.visitor_user.user.get_full_name }} {% else %}
+                        <span class="font-style:italic">No name Given</span>{% endif %}</td>
+                    <td>{{ log.visitor_user.user.email }}</td>
+                    <td>{{ log.visitor_user.user.phone_number }}</td>
+                    <td>{{ log.address }}</td>
+                    <td>{{ log.checkin_time }}</td>
+                    <td>{% if log.checkout_time %} {{ log.checkout_time }} {% else %} Still inside {% endif %}</td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+

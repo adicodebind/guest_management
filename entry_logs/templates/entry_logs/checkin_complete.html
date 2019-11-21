@@ -1,15 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Checkin Complete</title>
-</head>
-<body>
-Your checkin is complete<br>
-Please use the following token to checkout while leaving<br>
-{{ log.unique_token }}<br>
-<a href="/">Back to home</a>
+{% extends 'base/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
 
+{% block main_content %}
+    <div class="center cyan-text text-darken-4" style="font-weight: bold">
+        <h3>Check-In Complete</h3>
+        <p>
+            You have been successfully Checked-In. <br>
+            Here is your Entry Token.<br>
+            Please keep this with you.<br>
+            You will need it while checking out
+        </p>
+        <h3>{{ log.unique_token }}</h3>
+        <p>
+            Your host has been sent an email with details of your visit.<br>
+            You will be sent an email after checking out.<br>
+            Please check all folders including spam to make sure you receive the email<br>
+        </p>
+         <div>
+            <a href="/" class="waves-effect waves-light btn">Back to home page</a>
+            <a href="{% url 'entry_logs:checkout' %}" class="waves-effect waves-light btn">Check-Out</a>
+        </div>
+    </div>
 
-</body>
-</html>
+{% endblock %}
+

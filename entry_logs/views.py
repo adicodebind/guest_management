@@ -29,6 +29,9 @@ def checkin(request):
             if not user:
                 user = User.objects.create_user(username=data['email'], email=data['email'],
                                                 phone_number=data['phone_number'])
+                user.first_name = data['first_name']
+                user.last_name = data['last_name']
+                user.save()
 
             if not hasattr(user, 'visitor'):
                 visitor = Visitor.objects.create(user=user)
