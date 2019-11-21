@@ -11,7 +11,10 @@ from .models import VisitorLog
 # Create your views here.
 @login_required
 def show_logs(request):
-    logs = VisitorLog.objects.all()
+    if not hasattr(request.user, "host"):
+        return HttpResponse("Only hosts can view entry logs")
+
+    logs = VisitorLog.objects.filter(host=request.user.host)
 
     return render(request, "entry_logs/all_logs.html", context={"logs": logs})
 
@@ -33,7 +36,7 @@ def checkin(request):
             if existing_visitor:
                 form.add_error(None, "You are already checked in")
             else:
-                visitor_log = VisitorLog.objects.create(visitor_user=user.visitor, checkin_time=timezone.now(), address=data['address'])
+                visitor_log = VisitorLog.objects.create(visitor_user=user.visitor, checkin_time=timezone.now(), address=data['address'], host=data['host'])
 
                 print(visitor_log.__dict__)
                 return render(request, "entry_logs/checkin_complete.html", context={"log": visitor_log})

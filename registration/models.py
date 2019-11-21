@@ -41,6 +41,9 @@ class Host(models.Model):
 
         super().save(*args, **kwargs)
 
+    def __str__(self):
+        return self.user.get_full_name() or self.user.email
+
 
 class Visitor(models.Model):
     user = models.OneToOneField(to=User, on_delete=models.CASCADE)
