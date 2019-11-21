@@ -1,13 +1,57 @@
-{%  load static %}
+{% load static %}
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+    <!-- Compiled and minified CSS -->
+    {% block title %}
+        <title>Entrypoint</title>
+    {% endblock %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
 
+
+    </style>
+    {% block custom_styles %}
+    {% endblock %}
+</head>
+<body class="grey lighten-3">
+<nav>
+    <div class="nav-wrapper cyan darken-4">
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="/" class="">Home</a></li>
+
+        </ul>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="{% url 'entry_logs:logs' %}">View Entry Logs</a></li>
+            {% if request.user.is_authenticated %}
+                <li><a href="{% url 'registration:logout' %}">Logout</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    {% block notifications %}
+
+    {% endblock %}
+
+    {% block main_content %}
+
+    {% endblock %}
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems, {});
+    });
+</script>
 </body>
+
+
 </html>

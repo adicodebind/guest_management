@@ -1,20 +1,66 @@
-{%  load static %}
-{%  load widget_tweaks %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{% extends 'base/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %}
     <title>Home</title>
-</head>
-<body>
-<a href="{% url 'entry_logs:checkin' %}">Checkin</a><br>
-<a href="{% url 'entry_logs:checkout' %}">Checkout</a><br>
+{% endblock %}
 
-<a href="{% url 'entry_logs:logs' %}">View Entry Logs</a>
+{% block custom_styles %}
+    <style>
 
-{% if request.user.is_authenticated %}
-    <br><br>
-    <a href="{% url 'registration:logout' %}">Logout</a>
-{% endif %}
-</body>
-</html>
+    </style>
+{% endblock %}
+{% block main_content %}
+    <div class="center cyan-text text-darken-4" style="font-weight: bold">
+        <h3>Welcome</h3>
+    </div>
+    <div class="row">
+        <div class="col s12 m6">
+            <div class="card hoverable small">
+                <div class="card-content">
+                <span class="card-title cyan-text text-darken-4" style="font-weight: bold; font-size:2rem">
+                    Visitors
+                </span>
+                    <div class="divider"></div>
+                    <p class="grey-text text-darken-2" style="margin-top: 1rem">
+
+                        Please Check-In at the gate here before entering.<br>
+                        Use the below links to Check-In <br>
+                        Be sure to Check-Out while leaving<br>
+                        Hope you have a nice time here. :)
+                    </p>
+                    <div class="divider" style="margin-top: 0.5rem; margin-bottom: 0.5rem"></div>
+                    <p class="red-text text-darken-3" style="font-weight: bold; font-style:italic; font-size: 0.8rem"> In order to prevent abuse of email APIs, only total 20 visitors are allowed per day</p>
+                    <div class="card-action ">
+                        <a href="{% url 'entry_logs:checkin' %}" class="cyan-text text-darken-4">Checkin</a>
+                        <a href="{% url 'entry_logs:checkout' %}" class="cyan-text text-darken-4">Checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m6">
+            <div class="card hoverable small">
+                <div class="card-content">
+                <span class="card-title cyan-text text-darken-4" style="font-weight: bold; font-size:2rem">
+                    Hosts
+                </span>
+                    <div class="divider"></div>
+                    <p class="grey-text text-darken-2" style="margin-top: 1rem">
+                        You can keep track of all visitors here. <br>
+                        Hosts must <b>create an account</b> before anyone can visit you. <br>
+                        If you haven't create one now.<br>
+                        You will get emails when someone visits you
+                    </p>
+                    <div class="divider" style="margin-top: 0.5rem; margin-bottom: 0.5rem"></div>
+                    <p class="red-text text-darken-3" style="font-weight: bold; font-style:italic;font-size: 0.8rem"> In order to prevent abuse of email APIs, only total 10 hosts are allowed.</p>
+                    <div class="card-action">
+                            <a href="{% url 'entry_logs:logs' %}" class="cyan-text text-darken-4">View Entry Logs</a>
+                            <a href="{% url 'registration:signup' %}" class="cyan-text text-darken-4">Create Host Account</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
