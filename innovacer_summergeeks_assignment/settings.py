@@ -118,6 +118,7 @@ EMAIL_PORT = external_settings.EMAIL_PORT
 EMAIL_USE_TLS = external_settings.EMAIL_USE_TLS
 EMAIL_HOST_USER = external_settings.EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+DEFAULT_EMAIL_SENDER = "entrypoint@gatekeepers.com"
 PUBLIC_ID_LENGTH = external_settings.PUBLIC_ID_LENGTH
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
