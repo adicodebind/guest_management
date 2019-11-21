@@ -1,44 +1,41 @@
-{%  load static %}
+{% extends 'base/base.html' %}
+{% load static %}
 {% load widget_tweaks %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form action="{% url 'registration:login' %}" method="POST" class="form login">
-    {% csrf_token %}
-    {{ form.non_field_errors }}
-    <div class="form__field">
-        <label for="{{ form.username.id_for_label }}">Email</label>
-        {{ form.username|add_class:"form__input"|attr:"placeholder:Email" }}
+
+{% block main_content %}
+    <div class="center cyan-text text-darken-4" style="font-weight: bold">
+        <h3>Log-In</h3>
     </div>
+    <div class="row">
+        <form action="" method="post">
+            {% csrf_token %}
 
-    <div class="form__field">
-        <label for="login__password">
-            Password
-        </label>
-        {{ form.password|add_class:"form__input"|attr:"placeholder:Password" }}
+            <div class="row">
+
+                <div class="col s12 m6 push-m3">
+                    <div class="row">
+                        <div class="col s12 grey lighten-3 red-text text-darken-3">
+                            {{ form.non_field_errors }}
+                        </div>
+                        <div class="col s12 input-field">
+                            <label for="{{ form.email.id_for_label }}">Username/Email</label>
+                            {{ form.username|add_class:"validate" }}
+                        </div>
+                        <div class="col s12 input-field">
+                            <label for="{{ form.token.id_for_label }}">Password</label>
+                            {{ form.password|add_class:"validate" }}
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="center">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Login
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
     </div>
+{% endblock %}
 
-
-    <div class="form__field">
-        <input type="submit" value="Sign In">
-    </div>
-
-    <div>
-        Don't have a host account yet ? <a href="{% url 'registration:signup' %}">Signup Here</a>
-    </div>
-
-</form>
-
-{% comment %}<p class="text--center">
-{#        Not a member yet?<a href="{% url 'registration:signup' %}">Sign up now</a><br>#}
-        Forgot Password?<a href="{% url 'password_reset' %}">Click Here</a>
-        <svg class="icon">
-            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="assets/images/icons.svg#arrow-right"></use>
-        </svg>
-    </p>{% endcomment %}
-</body>
-</html>

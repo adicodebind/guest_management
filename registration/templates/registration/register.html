@@ -1,14 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form action="" method="post">
-    {% csrf_token %}
-    {{ signup_form.as_p }}
-    <button type="submit">Register</button>
-</form>
-</body>
-</html>
+{% extends 'base/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block main_content %}
+    <div class="center cyan-text text-darken-4" style="font-weight: bold">
+        <h3>Create Host Account</h3>
+    </div>
+    <div class="row">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="col s12 grey lighten-3 red-text text-darken-3">
+                {{ form.errors }}
+            </div>
+            <div class="row">
+                <div class="col s12 m6 input-field">
+                    <label for="{{ form.first_name.id_for_label }}">First Name</label>
+                    {{ form.first_name|add_class:"validate" }}
+                </div>
+                <div class="col s12 m6 input-field">
+                    <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+                    {{ form.last_name|add_class:"validate" }}
+                </div>
+                <div class="col s12 m6 input-field">
+                    <label for="{{ form.email.id_for_label }}">Email</label>
+                    {{ form.email|add_class:"validate" }}
+                </div>
+                <div class="col s12 m6 input-field">
+                    <label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
+                    {{ form.phone_number|add_class:"validate" }}
+                </div>
+                <div class="col s12 input-field">
+                    <label for="{{ form.password.id_for_label }}">Password</label>
+                    {{ form.password|add_class:"validate" }}
+                </div>
+                <div class="col s12 input-field">
+                    {{ form.confirm_password }}
+                    <label for="{{ form.confirm_password.id_for_label }}">Confirm Password</label>
+
+                </div>
+
+            </div>
+            <div class="center">
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
