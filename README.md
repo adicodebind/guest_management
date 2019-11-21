@@ -1,9 +1,9 @@
-# innovacer-summergeeks-assignment
+# innovaccer-summergeeks-assignment
 
 [![Build Status](https://travis-ci.org/adwait-thattey/innovacer_summergeeks_assignment.svg?branch=master)](https://travis-ci.org/adwait-thattey/innovacer_summergeeks_assignment)
 
 ---
-The Entry management software for Innovacer Summer Geeks Challenge
+The Entry management software for Innovaccer Summer Geeks Challenge
 
 The website is deployed on AWS here: [http://ec2-3-231-254-14.compute-1.amazonaws.com/](http://ec2-3-231-254-14.compute-1.amazonaws.com/)
 
