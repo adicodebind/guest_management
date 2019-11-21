@@ -1,5 +1,5 @@
 from django.db import models
-from registration.models import Visitor
+from registration.models import Visitor, Host
 from django.conf import settings
 from base.utils import generate_public_id, generate_random_string
 from django.utils import timezone
@@ -12,6 +12,7 @@ def get_visitor_token():
 
 class VisitorLog(models.Model):
     visitor_user = models.ForeignKey(to=Visitor, on_delete=models.CASCADE)
+    host = models.ForeignKey(to=Host, on_delete=models.CASCADE)
     public_id = models.CharField(max_length=settings.PUBLIC_ID_LENGTH, editable=False, unique=True)
     address = models.TextField()
     checkin_time = models.DateTimeField(default=timezone.now)
