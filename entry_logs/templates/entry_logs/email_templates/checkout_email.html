@@ -1,12 +1,19 @@
 {% load static %}
 
-Thank you for visiting us<br>
-Here are the details of the visit:<br>
+Thank you for visiting us
 
-Your Name : {{ log.visitor_user.user.get_full_name }} <br>
-Your Email: {{ log.visitor_user.user.email }} <br>
-Your Phone: {{ log.visitor_user.user.phone_number }} <br>
+Here are the details of the visit:
+
+Your Name : {{ log.visitor_user.user.get_full_name }}
+
+Your Email: {{ log.visitor_user.user.email }}
+
+Your Phone: {{ log.visitor_user.user.phone_number }}
+
 Host Name: {{ log.host.user.get_full_name }}
+
 Host Email: {{ log.host.user.email }}
-Address: {{ log.address}} <br>
+
+Address: {{ log.address}}
+
 Checkin Time: {{ log.checkin_time }}

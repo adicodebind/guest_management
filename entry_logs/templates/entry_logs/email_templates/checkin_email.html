@@ -1,10 +1,15 @@
 {% load static %}
 
-A new entry has been recorded at the gate for visiting you<br>
-Here are the details of the visitor:<br>
+A new entry has been recorded at the gate for visiting you.
 
-Name : {{ log.visitor_user.user.get_full_name }} <br>
-Email: {{ log.visitor_user.user.email }} <br>
-Phone: {{ log.visitor_user.user.phone_number }} <br>
-Address: {{ log.address}} <br>
+Here are the details of the visitor:
+
+Name : {{ log.visitor_user.user.get_full_name }}
+
+Email: {{ log.visitor_user.user.email }}
+
+Phone: {{ log.visitor_user.user.phone_number }}
+
+Address: {{ log.address}}
+
 Checkin Time: {{ log.checkin_time }}
