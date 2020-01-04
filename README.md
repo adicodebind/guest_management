@@ -5,8 +5,6 @@
 ---
 The Entry management software for Innovaccer Summer Geeks Challenge
 
-The website is deployed on AWS here: [http://ec2-3-231-254-14.compute-1.amazonaws.com/](http://ec2-3-231-254-14.compute-1.amazonaws.com/)
-
 Stack: Backend in django-2.2.7, Frontend in MaterializeCSS
 
 There are 2 types of Users: Host and Visitor
